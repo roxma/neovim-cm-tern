@@ -25,6 +25,8 @@ import cm
 import platform
 
 logger = getLogger(__name__)
+windows = platform.system() == "Windows"
+localhost = (windows and '127.0.0.1') or 'localhost'
 
 class Tern:
 
@@ -80,7 +82,7 @@ class Tern:
       try:
           payload = json.dumps(doc).encode('utf-8')
           logger.info('payload: %s', payload)
-          req = self._opener.open("http://localhost:" + str(self._port) + "/", payload)
+          req = self._opener.open("http://" + localhost + ":" + str(self._port) + "/", payload)
           result = req.read().decode('utf-8')
           logger.info('result: %s', result)
           return json.loads(result)

@@ -164,7 +164,7 @@ class Source(Base):
                     # There's optional args, don't jump out of parentheses
                     optional = '${1}'
 
-                item['snippet'] = item['word'] + '(' + ", ".join(snip_params) + optional + ')${0}'
+                item['snippet'] = typed + item['word'] + '(' + ", ".join(snip_params) + optional + ')${0}'
 
         # cm#complete(src, context, startcol, matches)
         ret = self.nvim.call('cm#complete', info['name'], ctx, ctx['startcol'], matches)
